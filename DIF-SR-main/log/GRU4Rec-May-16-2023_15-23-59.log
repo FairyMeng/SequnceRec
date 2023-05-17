@@ -1,0 +1,681 @@
+Tue 16 May 2023 15:23:59 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 212
+state = INFO
+reproducibility = True
+data_path = dataset/Amazon_Toys_and_Games
+show_progress = True
+save_dataset = False
+save_dataloaders = False
+benchmark_filename = None
+
+Training Hyper Parameters:
+checkpoint_dir = saved
+epochs = 200
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.0001
+eval_step = 2
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'LS': 'valid_and_test'}, 'group_by': 'user', 'order': 'TO', 'mode': 'full'}
+metrics = ['Recall', 'NDCG']
+topk = [3, 5, 10, 20]
+valid_metric = Recall@20
+valid_metric_bigger = True
+eval_batch_size = 256
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'rating', 'timestamp'], 'item': ['item_id', 'title', 'sales_rank', 'price', 'brand', 'categories', 'sales_type']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [5,inf)
+item_inter_num_interval = [5,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+
+Other Hyper Parameters: 
+neg_sampling = None
+multi_gpus = False
+repeatable = True
+embedding_size = 64
+hidden_size = 256
+num_layers = 1
+dropout_prob = 0.3
+loss_type = CE
+MODEL_TYPE = ModelType.SEQUENTIAL
+n_layers = 3
+n_heads = 4
+attribute_hidden_size = [64]
+inner_size = 256
+hidden_dropout_prob = 0.5
+attn_dropout_prob = 0.3
+hidden_act = gelu
+layer_norm_eps = 1e-12
+initializer_range = 0.02
+selected_features = ['categories']
+pooling_mode = sum
+weight_sharing = not
+fusion_type = gate
+lamdas = [5]
+attribute_predictor = linear
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+device = cuda
+train_neg_sample_args = {'strategy': 'none'}
+eval_neg_sample_args = {'strategy': 'full', 'distribution': 'uniform'}
+
+
+Tue 16 May 2023 15:23:59 INFO  Amazon_Toys_and_Games
+The number of users: 9446
+Average actions of users: 8.863313922710429
+The number of items: 4709
+Average actions of items: 17.781223449447747
+The number of inters: 83714
+The sparsity of the dataset: 99.81179920134375%
+Remain Fields: ['user_id', 'item_id', 'rating', 'timestamp', 'title', 'price', 'sales_type', 'sales_rank', 'brand', 'categories']
+Tue 16 May 2023 15:24:00 INFO  [Training]: train_batch_size = [2048] negative sampling: [None]
+Tue 16 May 2023 15:24:00 INFO  [Evaluation]: eval_batch_size = [256] eval_args: [{'split': {'LS': 'valid_and_test'}, 'group_by': 'user', 'order': 'TO', 'mode': 'full'}]
+Tue 16 May 2023 15:24:02 INFO  GRU4Rec(
+  (item_embedding): Embedding(4709, 64, padding_idx=0)
+  (emb_dropout): Dropout(p=0.3, inplace=False)
+  (gru_layers): GRU(64, 256, bias=False, batch_first=True)
+  (dense): Linear(in_features=256, out_features=64, bias=True)
+  (loss_fct): CrossEntropyLoss()
+)
+Trainable parameters: 563584
+Tue 16 May 2023 15:24:03 INFO  epoch 0 training [time: 1.64s, train loss: 236.7722]
+Tue 16 May 2023 15:24:05 INFO  epoch 1 training [time: 1.09s, train loss: 236.6918]
+Tue 16 May 2023 15:24:05 INFO  epoch 1 evaluating [time: 0.14s, valid_score: 0.014600]
+Tue 16 May 2023 15:24:05 INFO  valid result: 
+recall@3 : 0.0033    recall@5 : 0.006    recall@10 : 0.01    recall@20 : 0.0146    ndcg@3 : 0.0021    ndcg@5 : 0.0032    ndcg@10 : 0.0045    ndcg@20 : 0.0056    
+Tue 16 May 2023 15:24:05 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:06 INFO  epoch 2 training [time: 1.09s, train loss: 236.5907]
+Tue 16 May 2023 15:24:07 INFO  epoch 3 training [time: 1.11s, train loss: 236.4489]
+Tue 16 May 2023 15:24:07 INFO  epoch 3 evaluating [time: 0.14s, valid_score: 0.030500]
+Tue 16 May 2023 15:24:07 INFO  valid result: 
+recall@3 : 0.0059    recall@5 : 0.0088    recall@10 : 0.0142    recall@20 : 0.0305    ndcg@3 : 0.0045    ndcg@5 : 0.0056    ndcg@10 : 0.0074    ndcg@20 : 0.0114    
+Tue 16 May 2023 15:24:07 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:08 INFO  epoch 4 training [time: 1.09s, train loss: 236.0213]
+Tue 16 May 2023 15:24:09 INFO  epoch 5 training [time: 1.08s, train loss: 234.4592]
+Tue 16 May 2023 15:24:09 INFO  epoch 5 evaluating [time: 0.14s, valid_score: 0.038000]
+Tue 16 May 2023 15:24:09 INFO  valid result: 
+recall@3 : 0.0068    recall@5 : 0.0125    recall@10 : 0.0224    recall@20 : 0.038    ndcg@3 : 0.0047    ndcg@5 : 0.0071    ndcg@10 : 0.0102    ndcg@20 : 0.0142    
+Tue 16 May 2023 15:24:09 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:10 INFO  epoch 6 training [time: 1.08s, train loss: 232.7616]
+Tue 16 May 2023 15:24:12 INFO  epoch 7 training [time: 1.09s, train loss: 231.3886]
+Tue 16 May 2023 15:24:12 INFO  epoch 7 evaluating [time: 0.13s, valid_score: 0.036200]
+Tue 16 May 2023 15:24:12 INFO  valid result: 
+recall@3 : 0.0068    recall@5 : 0.012    recall@10 : 0.0215    recall@20 : 0.0362    ndcg@3 : 0.0045    ndcg@5 : 0.0066    ndcg@10 : 0.0097    ndcg@20 : 0.0134    
+Tue 16 May 2023 15:24:13 INFO  epoch 8 training [time: 1.10s, train loss: 230.1960]
+Tue 16 May 2023 15:24:14 INFO  epoch 9 training [time: 1.10s, train loss: 229.4835]
+Tue 16 May 2023 15:24:14 INFO  epoch 9 evaluating [time: 0.14s, valid_score: 0.034900]
+Tue 16 May 2023 15:24:14 INFO  valid result: 
+recall@3 : 0.0089    recall@5 : 0.0123    recall@10 : 0.0213    recall@20 : 0.0349    ndcg@3 : 0.0066    ndcg@5 : 0.008    ndcg@10 : 0.011    ndcg@20 : 0.0144    
+Tue 16 May 2023 15:24:15 INFO  epoch 10 training [time: 1.11s, train loss: 228.8595]
+Tue 16 May 2023 15:24:16 INFO  epoch 11 training [time: 1.10s, train loss: 228.1723]
+Tue 16 May 2023 15:24:16 INFO  epoch 11 evaluating [time: 0.14s, valid_score: 0.035600]
+Tue 16 May 2023 15:24:16 INFO  valid result: 
+recall@3 : 0.008    recall@5 : 0.0121    recall@10 : 0.022    recall@20 : 0.0356    ndcg@3 : 0.0056    ndcg@5 : 0.0073    ndcg@10 : 0.0106    ndcg@20 : 0.014    
+Tue 16 May 2023 15:24:17 INFO  epoch 12 training [time: 1.10s, train loss: 227.5196]
+Tue 16 May 2023 15:24:19 INFO  epoch 13 training [time: 1.10s, train loss: 227.0091]
+Tue 16 May 2023 15:24:19 INFO  epoch 13 evaluating [time: 0.14s, valid_score: 0.036400]
+Tue 16 May 2023 15:24:19 INFO  valid result: 
+recall@3 : 0.0085    recall@5 : 0.0128    recall@10 : 0.023    recall@20 : 0.0364    ndcg@3 : 0.006    ndcg@5 : 0.0078    ndcg@10 : 0.0112    ndcg@20 : 0.0145    
+Tue 16 May 2023 15:24:20 INFO  epoch 14 training [time: 1.10s, train loss: 226.4778]
+Tue 16 May 2023 15:24:21 INFO  epoch 15 training [time: 1.10s, train loss: 226.0147]
+Tue 16 May 2023 15:24:21 INFO  epoch 15 evaluating [time: 0.14s, valid_score: 0.036000]
+Tue 16 May 2023 15:24:21 INFO  valid result: 
+recall@3 : 0.0083    recall@5 : 0.0127    recall@10 : 0.023    recall@20 : 0.036    ndcg@3 : 0.0059    ndcg@5 : 0.0077    ndcg@10 : 0.011    ndcg@20 : 0.0143    
+Tue 16 May 2023 15:24:22 INFO  epoch 16 training [time: 1.11s, train loss: 225.7165]
+Tue 16 May 2023 15:24:23 INFO  epoch 17 training [time: 1.10s, train loss: 225.2461]
+Tue 16 May 2023 15:24:23 INFO  epoch 17 evaluating [time: 0.14s, valid_score: 0.035500]
+Tue 16 May 2023 15:24:23 INFO  valid result: 
+recall@3 : 0.0085    recall@5 : 0.0127    recall@10 : 0.0232    recall@20 : 0.0355    ndcg@3 : 0.0062    ndcg@5 : 0.0079    ndcg@10 : 0.0113    ndcg@20 : 0.0144    
+Tue 16 May 2023 15:24:25 INFO  epoch 18 training [time: 1.10s, train loss: 224.8064]
+Tue 16 May 2023 15:24:26 INFO  epoch 19 training [time: 1.11s, train loss: 224.5771]
+Tue 16 May 2023 15:24:26 INFO  epoch 19 evaluating [time: 0.15s, valid_score: 0.036500]
+Tue 16 May 2023 15:24:26 INFO  valid result: 
+recall@3 : 0.0082    recall@5 : 0.0129    recall@10 : 0.0229    recall@20 : 0.0365    ndcg@3 : 0.0058    ndcg@5 : 0.0077    ndcg@10 : 0.0109    ndcg@20 : 0.0143    
+Tue 16 May 2023 15:24:27 INFO  epoch 20 training [time: 1.11s, train loss: 224.0599]
+Tue 16 May 2023 15:24:28 INFO  epoch 21 training [time: 1.11s, train loss: 223.7247]
+Tue 16 May 2023 15:24:28 INFO  epoch 21 evaluating [time: 0.15s, valid_score: 0.036000]
+Tue 16 May 2023 15:24:28 INFO  valid result: 
+recall@3 : 0.0082    recall@5 : 0.0122    recall@10 : 0.0234    recall@20 : 0.036    ndcg@3 : 0.0059    ndcg@5 : 0.0075    ndcg@10 : 0.0112    ndcg@20 : 0.0144    
+Tue 16 May 2023 15:24:29 INFO  epoch 22 training [time: 1.10s, train loss: 223.4264]
+Tue 16 May 2023 15:24:30 INFO  epoch 23 training [time: 1.13s, train loss: 223.0604]
+Tue 16 May 2023 15:24:31 INFO  epoch 23 evaluating [time: 0.16s, valid_score: 0.036400]
+Tue 16 May 2023 15:24:31 INFO  valid result: 
+recall@3 : 0.0077    recall@5 : 0.0128    recall@10 : 0.0236    recall@20 : 0.0364    ndcg@3 : 0.0056    ndcg@5 : 0.0076    ndcg@10 : 0.0112    ndcg@20 : 0.0144    
+Tue 16 May 2023 15:24:32 INFO  epoch 24 training [time: 1.10s, train loss: 222.5197]
+Tue 16 May 2023 15:24:33 INFO  epoch 25 training [time: 1.12s, train loss: 222.1004]
+Tue 16 May 2023 15:24:33 INFO  epoch 25 evaluating [time: 0.15s, valid_score: 0.037300]
+Tue 16 May 2023 15:24:33 INFO  valid result: 
+recall@3 : 0.0078    recall@5 : 0.0136    recall@10 : 0.024    recall@20 : 0.0373    ndcg@3 : 0.0057    ndcg@5 : 0.008    ndcg@10 : 0.0114    ndcg@20 : 0.0147    
+Tue 16 May 2023 15:24:34 INFO  epoch 26 training [time: 1.10s, train loss: 221.9402]
+Tue 16 May 2023 15:24:35 INFO  epoch 27 training [time: 1.10s, train loss: 221.3843]
+Tue 16 May 2023 15:24:35 INFO  epoch 27 evaluating [time: 0.16s, valid_score: 0.039000]
+Tue 16 May 2023 15:24:35 INFO  valid result: 
+recall@3 : 0.0071    recall@5 : 0.0126    recall@10 : 0.0245    recall@20 : 0.039    ndcg@3 : 0.0052    ndcg@5 : 0.0074    ndcg@10 : 0.0113    ndcg@20 : 0.015    
+Tue 16 May 2023 15:24:35 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:36 INFO  epoch 28 training [time: 1.10s, train loss: 221.3004]
+Tue 16 May 2023 15:24:38 INFO  epoch 29 training [time: 1.12s, train loss: 221.1367]
+Tue 16 May 2023 15:24:38 INFO  epoch 29 evaluating [time: 0.16s, valid_score: 0.041400]
+Tue 16 May 2023 15:24:38 INFO  valid result: 
+recall@3 : 0.007    recall@5 : 0.014    recall@10 : 0.0266    recall@20 : 0.0414    ndcg@3 : 0.0052    ndcg@5 : 0.0081    ndcg@10 : 0.0121    ndcg@20 : 0.0158    
+Tue 16 May 2023 15:24:38 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:39 INFO  epoch 30 training [time: 1.10s, train loss: 220.9775]
+Tue 16 May 2023 15:24:40 INFO  epoch 31 training [time: 1.10s, train loss: 220.4707]
+Tue 16 May 2023 15:24:40 INFO  epoch 31 evaluating [time: 0.15s, valid_score: 0.041700]
+Tue 16 May 2023 15:24:40 INFO  valid result: 
+recall@3 : 0.0075    recall@5 : 0.0136    recall@10 : 0.0268    recall@20 : 0.0417    ndcg@3 : 0.0055    ndcg@5 : 0.0079    ndcg@10 : 0.0122    ndcg@20 : 0.0159    
+Tue 16 May 2023 15:24:40 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:41 INFO  epoch 32 training [time: 1.11s, train loss: 220.3072]
+Tue 16 May 2023 15:24:42 INFO  epoch 33 training [time: 1.11s, train loss: 220.1628]
+Tue 16 May 2023 15:24:42 INFO  epoch 33 evaluating [time: 0.15s, valid_score: 0.044400]
+Tue 16 May 2023 15:24:42 INFO  valid result: 
+recall@3 : 0.009    recall@5 : 0.0146    recall@10 : 0.0259    recall@20 : 0.0444    ndcg@3 : 0.0063    ndcg@5 : 0.0086    ndcg@10 : 0.0123    ndcg@20 : 0.0169    
+Tue 16 May 2023 15:24:42 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:44 INFO  epoch 34 training [time: 1.12s, train loss: 219.9214]
+Tue 16 May 2023 15:24:45 INFO  epoch 35 training [time: 1.10s, train loss: 219.7774]
+Tue 16 May 2023 15:24:45 INFO  epoch 35 evaluating [time: 0.15s, valid_score: 0.046400]
+Tue 16 May 2023 15:24:45 INFO  valid result: 
+recall@3 : 0.0079    recall@5 : 0.0142    recall@10 : 0.0272    recall@20 : 0.0464    ndcg@3 : 0.0058    ndcg@5 : 0.0083    ndcg@10 : 0.0125    ndcg@20 : 0.0173    
+Tue 16 May 2023 15:24:45 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:46 INFO  epoch 36 training [time: 1.12s, train loss: 219.3403]
+Tue 16 May 2023 15:24:47 INFO  epoch 37 training [time: 1.11s, train loss: 219.4797]
+Tue 16 May 2023 15:24:47 INFO  epoch 37 evaluating [time: 0.15s, valid_score: 0.047100]
+Tue 16 May 2023 15:24:47 INFO  valid result: 
+recall@3 : 0.0088    recall@5 : 0.0149    recall@10 : 0.0282    recall@20 : 0.0471    ndcg@3 : 0.0062    ndcg@5 : 0.0088    ndcg@10 : 0.0131    ndcg@20 : 0.0178    
+Tue 16 May 2023 15:24:47 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:48 INFO  epoch 38 training [time: 1.12s, train loss: 219.4653]
+Tue 16 May 2023 15:24:49 INFO  epoch 39 training [time: 1.13s, train loss: 219.2805]
+Tue 16 May 2023 15:24:50 INFO  epoch 39 evaluating [time: 0.13s, valid_score: 0.046800]
+Tue 16 May 2023 15:24:50 INFO  valid result: 
+recall@3 : 0.0095    recall@5 : 0.0157    recall@10 : 0.029    recall@20 : 0.0468    ndcg@3 : 0.0069    ndcg@5 : 0.0094    ndcg@10 : 0.0137    ndcg@20 : 0.0182    
+Tue 16 May 2023 15:24:51 INFO  epoch 40 training [time: 1.10s, train loss: 218.7447]
+Tue 16 May 2023 15:24:52 INFO  epoch 41 training [time: 1.11s, train loss: 218.8273]
+Tue 16 May 2023 15:24:52 INFO  epoch 41 evaluating [time: 0.16s, valid_score: 0.048800]
+Tue 16 May 2023 15:24:52 INFO  valid result: 
+recall@3 : 0.0094    recall@5 : 0.0158    recall@10 : 0.0298    recall@20 : 0.0488    ndcg@3 : 0.0066    ndcg@5 : 0.0092    ndcg@10 : 0.0137    ndcg@20 : 0.0185    
+Tue 16 May 2023 15:24:52 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:53 INFO  epoch 42 training [time: 1.12s, train loss: 218.6033]
+Tue 16 May 2023 15:24:54 INFO  epoch 43 training [time: 1.11s, train loss: 218.7601]
+Tue 16 May 2023 15:24:54 INFO  epoch 43 evaluating [time: 0.13s, valid_score: 0.050100]
+Tue 16 May 2023 15:24:54 INFO  valid result: 
+recall@3 : 0.0101    recall@5 : 0.0159    recall@10 : 0.029    recall@20 : 0.0501    ndcg@3 : 0.0074    ndcg@5 : 0.0098    ndcg@10 : 0.014    ndcg@20 : 0.0193    
+Tue 16 May 2023 15:24:54 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:24:55 INFO  epoch 44 training [time: 1.11s, train loss: 218.3088]
+Tue 16 May 2023 15:24:57 INFO  epoch 45 training [time: 1.11s, train loss: 218.2423]
+Tue 16 May 2023 15:24:57 INFO  epoch 45 evaluating [time: 0.14s, valid_score: 0.049600]
+Tue 16 May 2023 15:24:57 INFO  valid result: 
+recall@3 : 0.0102    recall@5 : 0.0159    recall@10 : 0.0298    recall@20 : 0.0496    ndcg@3 : 0.0071    ndcg@5 : 0.0094    ndcg@10 : 0.0139    ndcg@20 : 0.0189    
+Tue 16 May 2023 15:24:58 INFO  epoch 46 training [time: 1.10s, train loss: 218.3909]
+Tue 16 May 2023 15:24:59 INFO  epoch 47 training [time: 1.10s, train loss: 218.0927]
+Tue 16 May 2023 15:24:59 INFO  epoch 47 evaluating [time: 0.14s, valid_score: 0.049900]
+Tue 16 May 2023 15:24:59 INFO  valid result: 
+recall@3 : 0.01    recall@5 : 0.0165    recall@10 : 0.0294    recall@20 : 0.0499    ndcg@3 : 0.0072    ndcg@5 : 0.0099    ndcg@10 : 0.0141    ndcg@20 : 0.0192    
+Tue 16 May 2023 15:25:00 INFO  epoch 48 training [time: 1.12s, train loss: 217.8309]
+Tue 16 May 2023 15:25:01 INFO  epoch 49 training [time: 1.12s, train loss: 217.9284]
+Tue 16 May 2023 15:25:01 INFO  epoch 49 evaluating [time: 0.15s, valid_score: 0.051600]
+Tue 16 May 2023 15:25:01 INFO  valid result: 
+recall@3 : 0.0096    recall@5 : 0.0167    recall@10 : 0.0292    recall@20 : 0.0516    ndcg@3 : 0.0068    ndcg@5 : 0.0097    ndcg@10 : 0.0137    ndcg@20 : 0.0193    
+Tue 16 May 2023 15:25:01 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:03 INFO  epoch 50 training [time: 1.12s, train loss: 217.7576]
+Tue 16 May 2023 15:25:04 INFO  epoch 51 training [time: 1.10s, train loss: 217.7761]
+Tue 16 May 2023 15:25:04 INFO  epoch 51 evaluating [time: 0.13s, valid_score: 0.050800]
+Tue 16 May 2023 15:25:04 INFO  valid result: 
+recall@3 : 0.0104    recall@5 : 0.0165    recall@10 : 0.0296    recall@20 : 0.0508    ndcg@3 : 0.0072    ndcg@5 : 0.0097    ndcg@10 : 0.014    ndcg@20 : 0.0193    
+Tue 16 May 2023 15:25:05 INFO  epoch 52 training [time: 1.10s, train loss: 217.5195]
+Tue 16 May 2023 15:25:06 INFO  epoch 53 training [time: 1.11s, train loss: 217.4471]
+Tue 16 May 2023 15:25:06 INFO  epoch 53 evaluating [time: 0.14s, valid_score: 0.052000]
+Tue 16 May 2023 15:25:06 INFO  valid result: 
+recall@3 : 0.0106    recall@5 : 0.0159    recall@10 : 0.0299    recall@20 : 0.052    ndcg@3 : 0.0073    ndcg@5 : 0.0095    ndcg@10 : 0.014    ndcg@20 : 0.0195    
+Tue 16 May 2023 15:25:06 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:07 INFO  epoch 54 training [time: 1.10s, train loss: 217.3192]
+Tue 16 May 2023 15:25:08 INFO  epoch 55 training [time: 1.11s, train loss: 217.2717]
+Tue 16 May 2023 15:25:09 INFO  epoch 55 evaluating [time: 0.13s, valid_score: 0.052600]
+Tue 16 May 2023 15:25:09 INFO  valid result: 
+recall@3 : 0.0107    recall@5 : 0.0164    recall@10 : 0.0306    recall@20 : 0.0526    ndcg@3 : 0.0075    ndcg@5 : 0.0099    ndcg@10 : 0.0145    ndcg@20 : 0.02    
+Tue 16 May 2023 15:25:09 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:10 INFO  epoch 56 training [time: 1.10s, train loss: 217.1118]
+Tue 16 May 2023 15:25:11 INFO  epoch 57 training [time: 1.11s, train loss: 217.1090]
+Tue 16 May 2023 15:25:11 INFO  epoch 57 evaluating [time: 0.14s, valid_score: 0.053100]
+Tue 16 May 2023 15:25:11 INFO  valid result: 
+recall@3 : 0.0109    recall@5 : 0.0164    recall@10 : 0.0313    recall@20 : 0.0531    ndcg@3 : 0.0078    ndcg@5 : 0.0101    ndcg@10 : 0.0148    ndcg@20 : 0.0203    
+Tue 16 May 2023 15:25:11 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:12 INFO  epoch 58 training [time: 1.10s, train loss: 216.9322]
+Tue 16 May 2023 15:25:13 INFO  epoch 59 training [time: 1.10s, train loss: 216.7901]
+Tue 16 May 2023 15:25:13 INFO  epoch 59 evaluating [time: 0.14s, valid_score: 0.053600]
+Tue 16 May 2023 15:25:13 INFO  valid result: 
+recall@3 : 0.0108    recall@5 : 0.0166    recall@10 : 0.0318    recall@20 : 0.0536    ndcg@3 : 0.0078    ndcg@5 : 0.0102    ndcg@10 : 0.0151    ndcg@20 : 0.0205    
+Tue 16 May 2023 15:25:13 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:14 INFO  epoch 60 training [time: 1.11s, train loss: 216.7078]
+Tue 16 May 2023 15:25:15 INFO  epoch 61 training [time: 1.11s, train loss: 216.7682]
+Tue 16 May 2023 15:25:16 INFO  epoch 61 evaluating [time: 0.14s, valid_score: 0.055800]
+Tue 16 May 2023 15:25:16 INFO  valid result: 
+recall@3 : 0.0116    recall@5 : 0.0173    recall@10 : 0.0319    recall@20 : 0.0558    ndcg@3 : 0.0081    ndcg@5 : 0.0104    ndcg@10 : 0.0151    ndcg@20 : 0.0211    
+Tue 16 May 2023 15:25:16 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:17 INFO  epoch 62 training [time: 1.10s, train loss: 216.5999]
+Tue 16 May 2023 15:25:18 INFO  epoch 63 training [time: 1.11s, train loss: 216.3407]
+Tue 16 May 2023 15:25:18 INFO  epoch 63 evaluating [time: 0.14s, valid_score: 0.056600]
+Tue 16 May 2023 15:25:18 INFO  valid result: 
+recall@3 : 0.012    recall@5 : 0.017    recall@10 : 0.032    recall@20 : 0.0566    ndcg@3 : 0.0085    ndcg@5 : 0.0106    ndcg@10 : 0.0153    ndcg@20 : 0.0215    
+Tue 16 May 2023 15:25:18 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:19 INFO  epoch 64 training [time: 1.11s, train loss: 216.5517]
+Tue 16 May 2023 15:25:20 INFO  epoch 65 training [time: 1.11s, train loss: 216.2525]
+Tue 16 May 2023 15:25:20 INFO  epoch 65 evaluating [time: 0.13s, valid_score: 0.057700]
+Tue 16 May 2023 15:25:20 INFO  valid result: 
+recall@3 : 0.0114    recall@5 : 0.0176    recall@10 : 0.0329    recall@20 : 0.0577    ndcg@3 : 0.008    ndcg@5 : 0.0105    ndcg@10 : 0.0154    ndcg@20 : 0.0216    
+Tue 16 May 2023 15:25:20 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:21 INFO  epoch 66 training [time: 1.10s, train loss: 216.1069]
+Tue 16 May 2023 15:25:23 INFO  epoch 67 training [time: 1.10s, train loss: 215.8548]
+Tue 16 May 2023 15:25:23 INFO  epoch 67 evaluating [time: 0.14s, valid_score: 0.056700]
+Tue 16 May 2023 15:25:23 INFO  valid result: 
+recall@3 : 0.0115    recall@5 : 0.0164    recall@10 : 0.0332    recall@20 : 0.0567    ndcg@3 : 0.0079    ndcg@5 : 0.01    ndcg@10 : 0.0154    ndcg@20 : 0.0213    
+Tue 16 May 2023 15:25:24 INFO  epoch 68 training [time: 1.11s, train loss: 215.9988]
+Tue 16 May 2023 15:25:25 INFO  epoch 69 training [time: 1.10s, train loss: 215.8580]
+Tue 16 May 2023 15:25:25 INFO  epoch 69 evaluating [time: 0.14s, valid_score: 0.057400]
+Tue 16 May 2023 15:25:25 INFO  valid result: 
+recall@3 : 0.0121    recall@5 : 0.0163    recall@10 : 0.0354    recall@20 : 0.0574    ndcg@3 : 0.0084    ndcg@5 : 0.0101    ndcg@10 : 0.0162    ndcg@20 : 0.0217    
+Tue 16 May 2023 15:25:26 INFO  epoch 70 training [time: 1.11s, train loss: 215.8669]
+Tue 16 May 2023 15:25:27 INFO  epoch 71 training [time: 1.11s, train loss: 215.5552]
+Tue 16 May 2023 15:25:27 INFO  epoch 71 evaluating [time: 0.13s, valid_score: 0.058200]
+Tue 16 May 2023 15:25:27 INFO  valid result: 
+recall@3 : 0.0114    recall@5 : 0.0186    recall@10 : 0.0349    recall@20 : 0.0582    ndcg@3 : 0.0083    ndcg@5 : 0.0112    ndcg@10 : 0.0164    ndcg@20 : 0.0223    
+Tue 16 May 2023 15:25:27 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:29 INFO  epoch 72 training [time: 1.11s, train loss: 215.4731]
+Tue 16 May 2023 15:25:30 INFO  epoch 73 training [time: 1.12s, train loss: 215.5439]
+Tue 16 May 2023 15:25:30 INFO  epoch 73 evaluating [time: 0.13s, valid_score: 0.057500]
+Tue 16 May 2023 15:25:30 INFO  valid result: 
+recall@3 : 0.0115    recall@5 : 0.0191    recall@10 : 0.0347    recall@20 : 0.0575    ndcg@3 : 0.0084    ndcg@5 : 0.0115    ndcg@10 : 0.0166    ndcg@20 : 0.0223    
+Tue 16 May 2023 15:25:31 INFO  epoch 74 training [time: 1.10s, train loss: 214.9857]
+Tue 16 May 2023 15:25:32 INFO  epoch 75 training [time: 1.11s, train loss: 215.2421]
+Tue 16 May 2023 15:25:32 INFO  epoch 75 evaluating [time: 0.13s, valid_score: 0.059900]
+Tue 16 May 2023 15:25:32 INFO  valid result: 
+recall@3 : 0.0118    recall@5 : 0.0192    recall@10 : 0.0354    recall@20 : 0.0599    ndcg@3 : 0.0085    ndcg@5 : 0.0115    ndcg@10 : 0.0168    ndcg@20 : 0.0229    
+Tue 16 May 2023 15:25:32 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:33 INFO  epoch 76 training [time: 1.11s, train loss: 215.1034]
+Tue 16 May 2023 15:25:34 INFO  epoch 77 training [time: 1.11s, train loss: 215.0254]
+Tue 16 May 2023 15:25:35 INFO  epoch 77 evaluating [time: 0.14s, valid_score: 0.061500]
+Tue 16 May 2023 15:25:35 INFO  valid result: 
+recall@3 : 0.0125    recall@5 : 0.0197    recall@10 : 0.0355    recall@20 : 0.0615    ndcg@3 : 0.0086    ndcg@5 : 0.0116    ndcg@10 : 0.0166    ndcg@20 : 0.0231    
+Tue 16 May 2023 15:25:35 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:36 INFO  epoch 78 training [time: 1.11s, train loss: 214.6410]
+Tue 16 May 2023 15:25:37 INFO  epoch 79 training [time: 1.11s, train loss: 214.4522]
+Tue 16 May 2023 15:25:37 INFO  epoch 79 evaluating [time: 0.15s, valid_score: 0.062300]
+Tue 16 May 2023 15:25:37 INFO  valid result: 
+recall@3 : 0.012    recall@5 : 0.0193    recall@10 : 0.0354    recall@20 : 0.0623    ndcg@3 : 0.0085    ndcg@5 : 0.0115    ndcg@10 : 0.0166    ndcg@20 : 0.0233    
+Tue 16 May 2023 15:25:37 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:38 INFO  epoch 80 training [time: 1.11s, train loss: 214.4644]
+Tue 16 May 2023 15:25:39 INFO  epoch 81 training [time: 1.10s, train loss: 214.4384]
+Tue 16 May 2023 15:25:39 INFO  epoch 81 evaluating [time: 0.14s, valid_score: 0.063600]
+Tue 16 May 2023 15:25:39 INFO  valid result: 
+recall@3 : 0.0116    recall@5 : 0.0194    recall@10 : 0.036    recall@20 : 0.0636    ndcg@3 : 0.0082    ndcg@5 : 0.0114    ndcg@10 : 0.0167    ndcg@20 : 0.0236    
+Tue 16 May 2023 15:25:39 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:40 INFO  epoch 82 training [time: 1.10s, train loss: 214.3108]
+Tue 16 May 2023 15:25:41 INFO  epoch 83 training [time: 1.11s, train loss: 214.1337]
+Tue 16 May 2023 15:25:42 INFO  epoch 83 evaluating [time: 0.15s, valid_score: 0.064500]
+Tue 16 May 2023 15:25:42 INFO  valid result: 
+recall@3 : 0.013    recall@5 : 0.0201    recall@10 : 0.0372    recall@20 : 0.0645    ndcg@3 : 0.0091    ndcg@5 : 0.012    ndcg@10 : 0.0175    ndcg@20 : 0.0244    
+Tue 16 May 2023 15:25:42 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:43 INFO  epoch 84 training [time: 1.12s, train loss: 214.0531]
+Tue 16 May 2023 15:25:44 INFO  epoch 85 training [time: 1.11s, train loss: 213.6601]
+Tue 16 May 2023 15:25:44 INFO  epoch 85 evaluating [time: 0.15s, valid_score: 0.063900]
+Tue 16 May 2023 15:25:44 INFO  valid result: 
+recall@3 : 0.012    recall@5 : 0.0206    recall@10 : 0.0377    recall@20 : 0.0639    ndcg@3 : 0.0084    ndcg@5 : 0.012    ndcg@10 : 0.0174    ndcg@20 : 0.024    
+Tue 16 May 2023 15:25:45 INFO  epoch 86 training [time: 1.10s, train loss: 213.7975]
+Tue 16 May 2023 15:25:46 INFO  epoch 87 training [time: 1.11s, train loss: 213.7218]
+Tue 16 May 2023 15:25:46 INFO  epoch 87 evaluating [time: 0.14s, valid_score: 0.066000]
+Tue 16 May 2023 15:25:46 INFO  valid result: 
+recall@3 : 0.0131    recall@5 : 0.0198    recall@10 : 0.0375    recall@20 : 0.066    ndcg@3 : 0.0092    ndcg@5 : 0.0119    ndcg@10 : 0.0176    ndcg@20 : 0.0247    
+Tue 16 May 2023 15:25:46 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:47 INFO  epoch 88 training [time: 1.11s, train loss: 213.5313]
+Tue 16 May 2023 15:25:49 INFO  epoch 89 training [time: 1.11s, train loss: 213.3060]
+Tue 16 May 2023 15:25:49 INFO  epoch 89 evaluating [time: 0.16s, valid_score: 0.066500]
+Tue 16 May 2023 15:25:49 INFO  valid result: 
+recall@3 : 0.0128    recall@5 : 0.0211    recall@10 : 0.0381    recall@20 : 0.0665    ndcg@3 : 0.0091    ndcg@5 : 0.0124    ndcg@10 : 0.0178    ndcg@20 : 0.025    
+Tue 16 May 2023 15:25:49 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:50 INFO  epoch 90 training [time: 1.11s, train loss: 213.3649]
+Tue 16 May 2023 15:25:51 INFO  epoch 91 training [time: 1.10s, train loss: 213.2112]
+Tue 16 May 2023 15:25:51 INFO  epoch 91 evaluating [time: 0.16s, valid_score: 0.067000]
+Tue 16 May 2023 15:25:51 INFO  valid result: 
+recall@3 : 0.0131    recall@5 : 0.0214    recall@10 : 0.0401    recall@20 : 0.067    ndcg@3 : 0.0094    ndcg@5 : 0.0128    ndcg@10 : 0.0188    ndcg@20 : 0.0255    
+Tue 16 May 2023 15:25:51 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:52 INFO  epoch 92 training [time: 1.11s, train loss: 213.0092]
+Tue 16 May 2023 15:25:53 INFO  epoch 93 training [time: 1.11s, train loss: 212.8232]
+Tue 16 May 2023 15:25:54 INFO  epoch 93 evaluating [time: 0.14s, valid_score: 0.066700]
+Tue 16 May 2023 15:25:54 INFO  valid result: 
+recall@3 : 0.013    recall@5 : 0.0209    recall@10 : 0.0396    recall@20 : 0.0667    ndcg@3 : 0.0093    ndcg@5 : 0.0125    ndcg@10 : 0.0185    ndcg@20 : 0.0253    
+Tue 16 May 2023 15:25:55 INFO  epoch 94 training [time: 1.11s, train loss: 212.9257]
+Tue 16 May 2023 15:25:56 INFO  epoch 95 training [time: 1.12s, train loss: 212.9074]
+Tue 16 May 2023 15:25:56 INFO  epoch 95 evaluating [time: 0.14s, valid_score: 0.068500]
+Tue 16 May 2023 15:25:56 INFO  valid result: 
+recall@3 : 0.0136    recall@5 : 0.0212    recall@10 : 0.0386    recall@20 : 0.0685    ndcg@3 : 0.0097    ndcg@5 : 0.0128    ndcg@10 : 0.0184    ndcg@20 : 0.0259    
+Tue 16 May 2023 15:25:56 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:57 INFO  epoch 96 training [time: 1.11s, train loss: 212.5923]
+Tue 16 May 2023 15:25:58 INFO  epoch 97 training [time: 1.11s, train loss: 212.6064]
+Tue 16 May 2023 15:25:58 INFO  epoch 97 evaluating [time: 0.14s, valid_score: 0.070100]
+Tue 16 May 2023 15:25:58 INFO  valid result: 
+recall@3 : 0.0134    recall@5 : 0.0235    recall@10 : 0.0391    recall@20 : 0.0701    ndcg@3 : 0.0099    ndcg@5 : 0.014    ndcg@10 : 0.019    ndcg@20 : 0.0268    
+Tue 16 May 2023 15:25:58 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:25:59 INFO  epoch 98 training [time: 1.11s, train loss: 212.6125]
+Tue 16 May 2023 15:26:00 INFO  epoch 99 training [time: 1.12s, train loss: 212.4936]
+Tue 16 May 2023 15:26:01 INFO  epoch 99 evaluating [time: 0.15s, valid_score: 0.070200]
+Tue 16 May 2023 15:26:01 INFO  valid result: 
+recall@3 : 0.0144    recall@5 : 0.0248    recall@10 : 0.0406    recall@20 : 0.0702    ndcg@3 : 0.0104    ndcg@5 : 0.0145    ndcg@10 : 0.0196    ndcg@20 : 0.027    
+Tue 16 May 2023 15:26:01 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:02 INFO  epoch 100 training [time: 1.11s, train loss: 212.2375]
+Tue 16 May 2023 15:26:03 INFO  epoch 101 training [time: 1.11s, train loss: 211.9063]
+Tue 16 May 2023 15:26:03 INFO  epoch 101 evaluating [time: 0.14s, valid_score: 0.071300]
+Tue 16 May 2023 15:26:03 INFO  valid result: 
+recall@3 : 0.0142    recall@5 : 0.0247    recall@10 : 0.0424    recall@20 : 0.0713    ndcg@3 : 0.0102    ndcg@5 : 0.0145    ndcg@10 : 0.0201    ndcg@20 : 0.0274    
+Tue 16 May 2023 15:26:03 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:04 INFO  epoch 102 training [time: 1.11s, train loss: 212.1523]
+Tue 16 May 2023 15:26:05 INFO  epoch 103 training [time: 1.10s, train loss: 211.8427]
+Tue 16 May 2023 15:26:05 INFO  epoch 103 evaluating [time: 0.14s, valid_score: 0.071900]
+Tue 16 May 2023 15:26:05 INFO  valid result: 
+recall@3 : 0.0145    recall@5 : 0.0253    recall@10 : 0.043    recall@20 : 0.0719    ndcg@3 : 0.0104    ndcg@5 : 0.0148    ndcg@10 : 0.0205    ndcg@20 : 0.0277    
+Tue 16 May 2023 15:26:05 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:06 INFO  epoch 104 training [time: 1.11s, train loss: 211.6808]
+Tue 16 May 2023 15:26:08 INFO  epoch 105 training [time: 1.12s, train loss: 211.7820]
+Tue 16 May 2023 15:26:08 INFO  epoch 105 evaluating [time: 0.14s, valid_score: 0.071400]
+Tue 16 May 2023 15:26:08 INFO  valid result: 
+recall@3 : 0.0147    recall@5 : 0.0241    recall@10 : 0.0426    recall@20 : 0.0714    ndcg@3 : 0.0106    ndcg@5 : 0.0144    ndcg@10 : 0.0204    ndcg@20 : 0.0276    
+Tue 16 May 2023 15:26:09 INFO  epoch 106 training [time: 1.10s, train loss: 211.7090]
+Tue 16 May 2023 15:26:10 INFO  epoch 107 training [time: 1.12s, train loss: 211.6054]
+Tue 16 May 2023 15:26:10 INFO  epoch 107 evaluating [time: 0.14s, valid_score: 0.072300]
+Tue 16 May 2023 15:26:10 INFO  valid result: 
+recall@3 : 0.016    recall@5 : 0.0248    recall@10 : 0.0426    recall@20 : 0.0723    ndcg@3 : 0.0115    ndcg@5 : 0.0151    ndcg@10 : 0.0207    ndcg@20 : 0.0283    
+Tue 16 May 2023 15:26:10 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:11 INFO  epoch 108 training [time: 1.10s, train loss: 211.4077]
+Tue 16 May 2023 15:26:12 INFO  epoch 109 training [time: 1.10s, train loss: 211.3022]
+Tue 16 May 2023 15:26:12 INFO  epoch 109 evaluating [time: 0.14s, valid_score: 0.074100]
+Tue 16 May 2023 15:26:12 INFO  valid result: 
+recall@3 : 0.0163    recall@5 : 0.0258    recall@10 : 0.0429    recall@20 : 0.0741    ndcg@3 : 0.0123    ndcg@5 : 0.0163    ndcg@10 : 0.0217    ndcg@20 : 0.0295    
+Tue 16 May 2023 15:26:12 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:14 INFO  epoch 110 training [time: 1.11s, train loss: 211.0563]
+Tue 16 May 2023 15:26:15 INFO  epoch 111 training [time: 1.11s, train loss: 211.1389]
+Tue 16 May 2023 15:26:15 INFO  epoch 111 evaluating [time: 0.14s, valid_score: 0.074000]
+Tue 16 May 2023 15:26:15 INFO  valid result: 
+recall@3 : 0.0162    recall@5 : 0.0249    recall@10 : 0.0448    recall@20 : 0.074    ndcg@3 : 0.0123    ndcg@5 : 0.0158    ndcg@10 : 0.0223    ndcg@20 : 0.0296    
+Tue 16 May 2023 15:26:16 INFO  epoch 112 training [time: 1.10s, train loss: 210.9609]
+Tue 16 May 2023 15:26:17 INFO  epoch 113 training [time: 1.11s, train loss: 210.8727]
+Tue 16 May 2023 15:26:17 INFO  epoch 113 evaluating [time: 0.16s, valid_score: 0.074100]
+Tue 16 May 2023 15:26:17 INFO  valid result: 
+recall@3 : 0.0163    recall@5 : 0.0262    recall@10 : 0.045    recall@20 : 0.0741    ndcg@3 : 0.012    ndcg@5 : 0.016    ndcg@10 : 0.022    ndcg@20 : 0.0294    
+Tue 16 May 2023 15:26:18 INFO  epoch 114 training [time: 1.11s, train loss: 210.8544]
+Tue 16 May 2023 15:26:19 INFO  epoch 115 training [time: 1.11s, train loss: 210.6509]
+Tue 16 May 2023 15:26:20 INFO  epoch 115 evaluating [time: 0.14s, valid_score: 0.074900]
+Tue 16 May 2023 15:26:20 INFO  valid result: 
+recall@3 : 0.0173    recall@5 : 0.0255    recall@10 : 0.0452    recall@20 : 0.0749    ndcg@3 : 0.0126    ndcg@5 : 0.016    ndcg@10 : 0.0223    ndcg@20 : 0.0297    
+Tue 16 May 2023 15:26:20 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:21 INFO  epoch 116 training [time: 1.11s, train loss: 210.2831]
+Tue 16 May 2023 15:26:22 INFO  epoch 117 training [time: 1.12s, train loss: 210.3577]
+Tue 16 May 2023 15:26:22 INFO  epoch 117 evaluating [time: 0.14s, valid_score: 0.076500]
+Tue 16 May 2023 15:26:22 INFO  valid result: 
+recall@3 : 0.0178    recall@5 : 0.0271    recall@10 : 0.0448    recall@20 : 0.0765    ndcg@3 : 0.0133    ndcg@5 : 0.0171    ndcg@10 : 0.0228    ndcg@20 : 0.0308    
+Tue 16 May 2023 15:26:22 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:23 INFO  epoch 118 training [time: 1.11s, train loss: 210.0978]
+Tue 16 May 2023 15:26:24 INFO  epoch 119 training [time: 1.11s, train loss: 210.1735]
+Tue 16 May 2023 15:26:24 INFO  epoch 119 evaluating [time: 0.15s, valid_score: 0.077400]
+Tue 16 May 2023 15:26:24 INFO  valid result: 
+recall@3 : 0.0169    recall@5 : 0.0264    recall@10 : 0.0452    recall@20 : 0.0774    ndcg@3 : 0.0127    ndcg@5 : 0.0166    ndcg@10 : 0.0227    ndcg@20 : 0.0308    
+Tue 16 May 2023 15:26:24 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:25 INFO  epoch 120 training [time: 1.12s, train loss: 210.1761]
+Tue 16 May 2023 15:26:27 INFO  epoch 121 training [time: 1.12s, train loss: 210.0749]
+Tue 16 May 2023 15:26:27 INFO  epoch 121 evaluating [time: 0.16s, valid_score: 0.076800]
+Tue 16 May 2023 15:26:27 INFO  valid result: 
+recall@3 : 0.0179    recall@5 : 0.0269    recall@10 : 0.0468    recall@20 : 0.0768    ndcg@3 : 0.0133    ndcg@5 : 0.017    ndcg@10 : 0.0234    ndcg@20 : 0.0309    
+Tue 16 May 2023 15:26:28 INFO  epoch 122 training [time: 1.11s, train loss: 209.8776]
+Tue 16 May 2023 15:26:29 INFO  epoch 123 training [time: 1.11s, train loss: 209.8953]
+Tue 16 May 2023 15:26:29 INFO  epoch 123 evaluating [time: 0.16s, valid_score: 0.077500]
+Tue 16 May 2023 15:26:29 INFO  valid result: 
+recall@3 : 0.0176    recall@5 : 0.0283    recall@10 : 0.0467    recall@20 : 0.0775    ndcg@3 : 0.0133    ndcg@5 : 0.0177    ndcg@10 : 0.0236    ndcg@20 : 0.0313    
+Tue 16 May 2023 15:26:29 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:30 INFO  epoch 124 training [time: 1.11s, train loss: 209.6047]
+Tue 16 May 2023 15:26:31 INFO  epoch 125 training [time: 1.11s, train loss: 209.6605]
+Tue 16 May 2023 15:26:31 INFO  epoch 125 evaluating [time: 0.16s, valid_score: 0.077600]
+Tue 16 May 2023 15:26:31 INFO  valid result: 
+recall@3 : 0.0172    recall@5 : 0.0274    recall@10 : 0.0479    recall@20 : 0.0776    ndcg@3 : 0.0129    ndcg@5 : 0.0171    ndcg@10 : 0.0237    ndcg@20 : 0.0312    
+Tue 16 May 2023 15:26:32 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:33 INFO  epoch 126 training [time: 1.11s, train loss: 209.5324]
+Tue 16 May 2023 15:26:34 INFO  epoch 127 training [time: 1.11s, train loss: 209.3605]
+Tue 16 May 2023 15:26:34 INFO  epoch 127 evaluating [time: 0.16s, valid_score: 0.077400]
+Tue 16 May 2023 15:26:34 INFO  valid result: 
+recall@3 : 0.0186    recall@5 : 0.0283    recall@10 : 0.0471    recall@20 : 0.0774    ndcg@3 : 0.014    ndcg@5 : 0.0179    ndcg@10 : 0.024    ndcg@20 : 0.0316    
+Tue 16 May 2023 15:26:35 INFO  epoch 128 training [time: 1.11s, train loss: 209.3088]
+Tue 16 May 2023 15:26:36 INFO  epoch 129 training [time: 1.11s, train loss: 209.4874]
+Tue 16 May 2023 15:26:36 INFO  epoch 129 evaluating [time: 0.15s, valid_score: 0.077600]
+Tue 16 May 2023 15:26:36 INFO  valid result: 
+recall@3 : 0.0202    recall@5 : 0.0294    recall@10 : 0.0478    recall@20 : 0.0776    ndcg@3 : 0.0148    ndcg@5 : 0.0186    ndcg@10 : 0.0245    ndcg@20 : 0.0319    
+Tue 16 May 2023 15:26:37 INFO  epoch 130 training [time: 1.12s, train loss: 209.2552]
+Tue 16 May 2023 15:26:39 INFO  epoch 131 training [time: 1.12s, train loss: 209.1339]
+Tue 16 May 2023 15:26:39 INFO  epoch 131 evaluating [time: 0.16s, valid_score: 0.079400]
+Tue 16 May 2023 15:26:39 INFO  valid result: 
+recall@3 : 0.02    recall@5 : 0.03    recall@10 : 0.0492    recall@20 : 0.0794    ndcg@3 : 0.0151    ndcg@5 : 0.0192    ndcg@10 : 0.0254    ndcg@20 : 0.033    
+Tue 16 May 2023 15:26:39 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:40 INFO  epoch 132 training [time: 1.12s, train loss: 209.2162]
+Tue 16 May 2023 15:26:41 INFO  epoch 133 training [time: 1.12s, train loss: 208.8113]
+Tue 16 May 2023 15:26:41 INFO  epoch 133 evaluating [time: 0.17s, valid_score: 0.078900]
+Tue 16 May 2023 15:26:41 INFO  valid result: 
+recall@3 : 0.0201    recall@5 : 0.0299    recall@10 : 0.0491    recall@20 : 0.0789    ndcg@3 : 0.0154    ndcg@5 : 0.0193    ndcg@10 : 0.0255    ndcg@20 : 0.033    
+Tue 16 May 2023 15:26:42 INFO  epoch 134 training [time: 1.12s, train loss: 208.9955]
+Tue 16 May 2023 15:26:43 INFO  epoch 135 training [time: 1.11s, train loss: 208.9174]
+Tue 16 May 2023 15:26:43 INFO  epoch 135 evaluating [time: 0.16s, valid_score: 0.078700]
+Tue 16 May 2023 15:26:43 INFO  valid result: 
+recall@3 : 0.0201    recall@5 : 0.0312    recall@10 : 0.0492    recall@20 : 0.0787    ndcg@3 : 0.015    ndcg@5 : 0.0196    ndcg@10 : 0.0253    ndcg@20 : 0.0327    
+Tue 16 May 2023 15:26:45 INFO  epoch 136 training [time: 1.11s, train loss: 208.7434]
+Tue 16 May 2023 15:26:46 INFO  epoch 137 training [time: 1.12s, train loss: 208.5695]
+Tue 16 May 2023 15:26:46 INFO  epoch 137 evaluating [time: 0.16s, valid_score: 0.079700]
+Tue 16 May 2023 15:26:46 INFO  valid result: 
+recall@3 : 0.0208    recall@5 : 0.0316    recall@10 : 0.0501    recall@20 : 0.0797    ndcg@3 : 0.0153    ndcg@5 : 0.0197    ndcg@10 : 0.0256    ndcg@20 : 0.033    
+Tue 16 May 2023 15:26:46 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:47 INFO  epoch 138 training [time: 1.12s, train loss: 208.5099]
+Tue 16 May 2023 15:26:48 INFO  epoch 139 training [time: 1.11s, train loss: 208.5958]
+Tue 16 May 2023 15:26:48 INFO  epoch 139 evaluating [time: 0.15s, valid_score: 0.079200]
+Tue 16 May 2023 15:26:48 INFO  valid result: 
+recall@3 : 0.0202    recall@5 : 0.0303    recall@10 : 0.0502    recall@20 : 0.0792    ndcg@3 : 0.0155    ndcg@5 : 0.0196    ndcg@10 : 0.026    ndcg@20 : 0.0333    
+Tue 16 May 2023 15:26:49 INFO  epoch 140 training [time: 1.11s, train loss: 208.3286]
+Tue 16 May 2023 15:26:50 INFO  epoch 141 training [time: 1.10s, train loss: 208.2635]
+Tue 16 May 2023 15:26:51 INFO  epoch 141 evaluating [time: 0.16s, valid_score: 0.079800]
+Tue 16 May 2023 15:26:51 INFO  valid result: 
+recall@3 : 0.0203    recall@5 : 0.0303    recall@10 : 0.0517    recall@20 : 0.0798    ndcg@3 : 0.0155    ndcg@5 : 0.0196    ndcg@10 : 0.0263    ndcg@20 : 0.0334    
+Tue 16 May 2023 15:26:51 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:52 INFO  epoch 142 training [time: 1.11s, train loss: 208.1299]
+Tue 16 May 2023 15:26:53 INFO  epoch 143 training [time: 1.11s, train loss: 208.1178]
+Tue 16 May 2023 15:26:53 INFO  epoch 143 evaluating [time: 0.15s, valid_score: 0.082600]
+Tue 16 May 2023 15:26:53 INFO  valid result: 
+recall@3 : 0.0201    recall@5 : 0.03    recall@10 : 0.0517    recall@20 : 0.0826    ndcg@3 : 0.0155    ndcg@5 : 0.0195    ndcg@10 : 0.0264    ndcg@20 : 0.0342    
+Tue 16 May 2023 15:26:53 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:26:54 INFO  epoch 144 training [time: 1.11s, train loss: 208.0761]
+Tue 16 May 2023 15:26:55 INFO  epoch 145 training [time: 1.11s, train loss: 207.9242]
+Tue 16 May 2023 15:26:55 INFO  epoch 145 evaluating [time: 0.14s, valid_score: 0.082200]
+Tue 16 May 2023 15:26:55 INFO  valid result: 
+recall@3 : 0.0204    recall@5 : 0.0304    recall@10 : 0.0506    recall@20 : 0.0822    ndcg@3 : 0.0156    ndcg@5 : 0.0197    ndcg@10 : 0.0262    ndcg@20 : 0.0341    
+Tue 16 May 2023 15:26:56 INFO  epoch 146 training [time: 1.10s, train loss: 207.8001]
+Tue 16 May 2023 15:26:58 INFO  epoch 147 training [time: 1.11s, train loss: 207.7931]
+Tue 16 May 2023 15:26:58 INFO  epoch 147 evaluating [time: 0.13s, valid_score: 0.082400]
+Tue 16 May 2023 15:26:58 INFO  valid result: 
+recall@3 : 0.0213    recall@5 : 0.0316    recall@10 : 0.0503    recall@20 : 0.0824    ndcg@3 : 0.0162    ndcg@5 : 0.0204    ndcg@10 : 0.0264    ndcg@20 : 0.0345    
+Tue 16 May 2023 15:26:59 INFO  epoch 148 training [time: 1.12s, train loss: 207.9598]
+Tue 16 May 2023 15:27:00 INFO  epoch 149 training [time: 1.13s, train loss: 207.8309]
+Tue 16 May 2023 15:27:00 INFO  epoch 149 evaluating [time: 0.14s, valid_score: 0.083700]
+Tue 16 May 2023 15:27:00 INFO  valid result: 
+recall@3 : 0.0209    recall@5 : 0.0309    recall@10 : 0.0501    recall@20 : 0.0837    ndcg@3 : 0.0157    ndcg@5 : 0.0198    ndcg@10 : 0.0259    ndcg@20 : 0.0344    
+Tue 16 May 2023 15:27:00 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:01 INFO  epoch 150 training [time: 1.11s, train loss: 207.2356]
+Tue 16 May 2023 15:27:02 INFO  epoch 151 training [time: 1.11s, train loss: 207.5342]
+Tue 16 May 2023 15:27:02 INFO  epoch 151 evaluating [time: 0.14s, valid_score: 0.083500]
+Tue 16 May 2023 15:27:02 INFO  valid result: 
+recall@3 : 0.0219    recall@5 : 0.0313    recall@10 : 0.051    recall@20 : 0.0835    ndcg@3 : 0.0168    ndcg@5 : 0.0206    ndcg@10 : 0.0269    ndcg@20 : 0.0351    
+Tue 16 May 2023 15:27:04 INFO  epoch 152 training [time: 1.11s, train loss: 207.4703]
+Tue 16 May 2023 15:27:05 INFO  epoch 153 training [time: 1.11s, train loss: 207.1381]
+Tue 16 May 2023 15:27:05 INFO  epoch 153 evaluating [time: 0.13s, valid_score: 0.083200]
+Tue 16 May 2023 15:27:05 INFO  valid result: 
+recall@3 : 0.0209    recall@5 : 0.0313    recall@10 : 0.0505    recall@20 : 0.0832    ndcg@3 : 0.016    ndcg@5 : 0.0203    ndcg@10 : 0.0265    ndcg@20 : 0.0347    
+Tue 16 May 2023 15:27:06 INFO  epoch 154 training [time: 1.11s, train loss: 207.1502]
+Tue 16 May 2023 15:27:07 INFO  epoch 155 training [time: 1.12s, train loss: 207.0966]
+Tue 16 May 2023 15:27:07 INFO  epoch 155 evaluating [time: 0.14s, valid_score: 0.083100]
+Tue 16 May 2023 15:27:07 INFO  valid result: 
+recall@3 : 0.0218    recall@5 : 0.0312    recall@10 : 0.0524    recall@20 : 0.0831    ndcg@3 : 0.0166    ndcg@5 : 0.0204    ndcg@10 : 0.0272    ndcg@20 : 0.0349    
+Tue 16 May 2023 15:27:08 INFO  epoch 156 training [time: 1.10s, train loss: 207.0236]
+Tue 16 May 2023 15:27:09 INFO  epoch 157 training [time: 1.11s, train loss: 206.6898]
+Tue 16 May 2023 15:27:10 INFO  epoch 157 evaluating [time: 0.13s, valid_score: 0.083900]
+Tue 16 May 2023 15:27:10 INFO  valid result: 
+recall@3 : 0.0223    recall@5 : 0.0321    recall@10 : 0.0526    recall@20 : 0.0839    ndcg@3 : 0.0169    ndcg@5 : 0.0209    ndcg@10 : 0.0274    ndcg@20 : 0.0352    
+Tue 16 May 2023 15:27:10 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:11 INFO  epoch 158 training [time: 1.12s, train loss: 206.6202]
+Tue 16 May 2023 15:27:12 INFO  epoch 159 training [time: 1.11s, train loss: 206.7048]
+Tue 16 May 2023 15:27:12 INFO  epoch 159 evaluating [time: 0.14s, valid_score: 0.084900]
+Tue 16 May 2023 15:27:12 INFO  valid result: 
+recall@3 : 0.0228    recall@5 : 0.0331    recall@10 : 0.0525    recall@20 : 0.0849    ndcg@3 : 0.0171    ndcg@5 : 0.0214    ndcg@10 : 0.0276    ndcg@20 : 0.0357    
+Tue 16 May 2023 15:27:12 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:13 INFO  epoch 160 training [time: 1.11s, train loss: 206.7223]
+Tue 16 May 2023 15:27:14 INFO  epoch 161 training [time: 1.11s, train loss: 206.3067]
+Tue 16 May 2023 15:27:14 INFO  epoch 161 evaluating [time: 0.14s, valid_score: 0.084600]
+Tue 16 May 2023 15:27:14 INFO  valid result: 
+recall@3 : 0.0217    recall@5 : 0.0323    recall@10 : 0.0531    recall@20 : 0.0846    ndcg@3 : 0.0164    ndcg@5 : 0.0207    ndcg@10 : 0.0274    ndcg@20 : 0.0353    
+Tue 16 May 2023 15:27:15 INFO  epoch 162 training [time: 1.10s, train loss: 206.4205]
+Tue 16 May 2023 15:27:17 INFO  epoch 163 training [time: 1.10s, train loss: 206.1212]
+Tue 16 May 2023 15:27:17 INFO  epoch 163 evaluating [time: 0.14s, valid_score: 0.085400]
+Tue 16 May 2023 15:27:17 INFO  valid result: 
+recall@3 : 0.0215    recall@5 : 0.0326    recall@10 : 0.0526    recall@20 : 0.0854    ndcg@3 : 0.0162    ndcg@5 : 0.0208    ndcg@10 : 0.0272    ndcg@20 : 0.0354    
+Tue 16 May 2023 15:27:17 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:18 INFO  epoch 164 training [time: 1.11s, train loss: 206.4873]
+Tue 16 May 2023 15:27:19 INFO  epoch 165 training [time: 1.12s, train loss: 205.9082]
+Tue 16 May 2023 15:27:19 INFO  epoch 165 evaluating [time: 0.13s, valid_score: 0.085900]
+Tue 16 May 2023 15:27:19 INFO  valid result: 
+recall@3 : 0.0222    recall@5 : 0.0317    recall@10 : 0.0531    recall@20 : 0.0859    ndcg@3 : 0.0168    ndcg@5 : 0.0206    ndcg@10 : 0.0275    ndcg@20 : 0.0357    
+Tue 16 May 2023 15:27:19 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:20 INFO  epoch 166 training [time: 1.11s, train loss: 205.9612]
+Tue 16 May 2023 15:27:21 INFO  epoch 167 training [time: 1.12s, train loss: 205.8384]
+Tue 16 May 2023 15:27:21 INFO  epoch 167 evaluating [time: 0.13s, valid_score: 0.087200]
+Tue 16 May 2023 15:27:21 INFO  valid result: 
+recall@3 : 0.022    recall@5 : 0.0321    recall@10 : 0.0536    recall@20 : 0.0872    ndcg@3 : 0.0166    ndcg@5 : 0.0207    ndcg@10 : 0.0276    ndcg@20 : 0.036    
+Tue 16 May 2023 15:27:21 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:23 INFO  epoch 168 training [time: 1.11s, train loss: 205.9979]
+Tue 16 May 2023 15:27:24 INFO  epoch 169 training [time: 1.11s, train loss: 205.8939]
+Tue 16 May 2023 15:27:24 INFO  epoch 169 evaluating [time: 0.13s, valid_score: 0.085500]
+Tue 16 May 2023 15:27:24 INFO  valid result: 
+recall@3 : 0.0221    recall@5 : 0.0327    recall@10 : 0.0538    recall@20 : 0.0855    ndcg@3 : 0.016    ndcg@5 : 0.0203    ndcg@10 : 0.0271    ndcg@20 : 0.0351    
+Tue 16 May 2023 15:27:25 INFO  epoch 170 training [time: 1.12s, train loss: 205.7943]
+Tue 16 May 2023 15:27:26 INFO  epoch 171 training [time: 1.11s, train loss: 205.9834]
+Tue 16 May 2023 15:27:26 INFO  epoch 171 evaluating [time: 0.14s, valid_score: 0.085900]
+Tue 16 May 2023 15:27:26 INFO  valid result: 
+recall@3 : 0.0219    recall@5 : 0.032    recall@10 : 0.0533    recall@20 : 0.0859    ndcg@3 : 0.0165    ndcg@5 : 0.0207    ndcg@10 : 0.0275    ndcg@20 : 0.0358    
+Tue 16 May 2023 15:27:27 INFO  epoch 172 training [time: 1.10s, train loss: 205.4730]
+Tue 16 May 2023 15:27:28 INFO  epoch 173 training [time: 1.11s, train loss: 205.4146]
+Tue 16 May 2023 15:27:28 INFO  epoch 173 evaluating [time: 0.14s, valid_score: 0.086500]
+Tue 16 May 2023 15:27:28 INFO  valid result: 
+recall@3 : 0.0233    recall@5 : 0.0326    recall@10 : 0.0546    recall@20 : 0.0865    ndcg@3 : 0.0177    ndcg@5 : 0.0216    ndcg@10 : 0.0286    ndcg@20 : 0.0367    
+Tue 16 May 2023 15:27:30 INFO  epoch 174 training [time: 1.11s, train loss: 205.6521]
+Tue 16 May 2023 15:27:31 INFO  epoch 175 training [time: 1.10s, train loss: 205.3280]
+Tue 16 May 2023 15:27:31 INFO  epoch 175 evaluating [time: 0.13s, valid_score: 0.087800]
+Tue 16 May 2023 15:27:31 INFO  valid result: 
+recall@3 : 0.0233    recall@5 : 0.033    recall@10 : 0.0537    recall@20 : 0.0878    ndcg@3 : 0.0177    ndcg@5 : 0.0217    ndcg@10 : 0.0283    ndcg@20 : 0.0369    
+Tue 16 May 2023 15:27:31 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:32 INFO  epoch 176 training [time: 1.10s, train loss: 205.3630]
+Tue 16 May 2023 15:27:33 INFO  epoch 177 training [time: 1.11s, train loss: 205.4457]
+Tue 16 May 2023 15:27:33 INFO  epoch 177 evaluating [time: 0.15s, valid_score: 0.087100]
+Tue 16 May 2023 15:27:33 INFO  valid result: 
+recall@3 : 0.0238    recall@5 : 0.0332    recall@10 : 0.0544    recall@20 : 0.0871    ndcg@3 : 0.0181    ndcg@5 : 0.022    ndcg@10 : 0.0287    ndcg@20 : 0.037    
+Tue 16 May 2023 15:27:34 INFO  epoch 178 training [time: 1.11s, train loss: 204.7721]
+Tue 16 May 2023 15:27:35 INFO  epoch 179 training [time: 1.11s, train loss: 205.3891]
+Tue 16 May 2023 15:27:36 INFO  epoch 179 evaluating [time: 0.13s, valid_score: 0.088600]
+Tue 16 May 2023 15:27:36 INFO  valid result: 
+recall@3 : 0.0238    recall@5 : 0.0339    recall@10 : 0.0556    recall@20 : 0.0886    ndcg@3 : 0.0182    ndcg@5 : 0.0223    ndcg@10 : 0.0293    ndcg@20 : 0.0376    
+Tue 16 May 2023 15:27:36 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:37 INFO  epoch 180 training [time: 1.11s, train loss: 204.8338]
+Tue 16 May 2023 15:27:38 INFO  epoch 181 training [time: 1.11s, train loss: 204.8344]
+Tue 16 May 2023 15:27:38 INFO  epoch 181 evaluating [time: 0.15s, valid_score: 0.089600]
+Tue 16 May 2023 15:27:38 INFO  valid result: 
+recall@3 : 0.0245    recall@5 : 0.0341    recall@10 : 0.0551    recall@20 : 0.0896    ndcg@3 : 0.0182    ndcg@5 : 0.0222    ndcg@10 : 0.0289    ndcg@20 : 0.0376    
+Tue 16 May 2023 15:27:38 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:39 INFO  epoch 182 training [time: 1.11s, train loss: 204.6179]
+Tue 16 May 2023 15:27:40 INFO  epoch 183 training [time: 1.10s, train loss: 204.1901]
+Tue 16 May 2023 15:27:40 INFO  epoch 183 evaluating [time: 0.14s, valid_score: 0.089500]
+Tue 16 May 2023 15:27:40 INFO  valid result: 
+recall@3 : 0.0242    recall@5 : 0.0346    recall@10 : 0.0554    recall@20 : 0.0895    ndcg@3 : 0.0185    ndcg@5 : 0.0228    ndcg@10 : 0.0294    ndcg@20 : 0.038    
+Tue 16 May 2023 15:27:41 INFO  epoch 184 training [time: 1.11s, train loss: 204.7931]
+Tue 16 May 2023 15:27:42 INFO  epoch 185 training [time: 1.10s, train loss: 204.5732]
+Tue 16 May 2023 15:27:43 INFO  epoch 185 evaluating [time: 0.15s, valid_score: 0.089900]
+Tue 16 May 2023 15:27:43 INFO  valid result: 
+recall@3 : 0.0245    recall@5 : 0.0352    recall@10 : 0.0558    recall@20 : 0.0899    ndcg@3 : 0.0188    ndcg@5 : 0.0232    ndcg@10 : 0.0298    ndcg@20 : 0.0383    
+Tue 16 May 2023 15:27:43 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:44 INFO  epoch 186 training [time: 1.12s, train loss: 204.4137]
+Tue 16 May 2023 15:27:45 INFO  epoch 187 training [time: 1.10s, train loss: 204.4004]
+Tue 16 May 2023 15:27:45 INFO  epoch 187 evaluating [time: 0.14s, valid_score: 0.090400]
+Tue 16 May 2023 15:27:45 INFO  valid result: 
+recall@3 : 0.0251    recall@5 : 0.0359    recall@10 : 0.0571    recall@20 : 0.0904    ndcg@3 : 0.0193    ndcg@5 : 0.0237    ndcg@10 : 0.0304    ndcg@20 : 0.0388    
+Tue 16 May 2023 15:27:45 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:46 INFO  epoch 188 training [time: 1.11s, train loss: 204.2292]
+Tue 16 May 2023 15:27:47 INFO  epoch 189 training [time: 1.11s, train loss: 203.9357]
+Tue 16 May 2023 15:27:47 INFO  epoch 189 evaluating [time: 0.14s, valid_score: 0.091600]
+Tue 16 May 2023 15:27:47 INFO  valid result: 
+recall@3 : 0.0242    recall@5 : 0.0352    recall@10 : 0.0569    recall@20 : 0.0916    ndcg@3 : 0.0185    ndcg@5 : 0.023    ndcg@10 : 0.0299    ndcg@20 : 0.0387    
+Tue 16 May 2023 15:27:47 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:49 INFO  epoch 190 training [time: 1.11s, train loss: 203.7834]
+Tue 16 May 2023 15:27:50 INFO  epoch 191 training [time: 1.11s, train loss: 204.2956]
+Tue 16 May 2023 15:27:50 INFO  epoch 191 evaluating [time: 0.14s, valid_score: 0.092000]
+Tue 16 May 2023 15:27:50 INFO  valid result: 
+recall@3 : 0.0251    recall@5 : 0.036    recall@10 : 0.0571    recall@20 : 0.092    ndcg@3 : 0.0192    ndcg@5 : 0.0237    ndcg@10 : 0.0304    ndcg@20 : 0.0392    
+Tue 16 May 2023 15:27:50 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:51 INFO  epoch 192 training [time: 1.11s, train loss: 203.9961]
+Tue 16 May 2023 15:27:52 INFO  epoch 193 training [time: 1.10s, train loss: 203.9803]
+Tue 16 May 2023 15:27:52 INFO  epoch 193 evaluating [time: 0.14s, valid_score: 0.091800]
+Tue 16 May 2023 15:27:52 INFO  valid result: 
+recall@3 : 0.025    recall@5 : 0.036    recall@10 : 0.0571    recall@20 : 0.0918    ndcg@3 : 0.0195    ndcg@5 : 0.024    ndcg@10 : 0.0307    ndcg@20 : 0.0395    
+Tue 16 May 2023 15:27:53 INFO  epoch 194 training [time: 1.11s, train loss: 204.0127]
+Tue 16 May 2023 15:27:54 INFO  epoch 195 training [time: 1.12s, train loss: 204.0732]
+Tue 16 May 2023 15:27:54 INFO  epoch 195 evaluating [time: 0.14s, valid_score: 0.090800]
+Tue 16 May 2023 15:27:54 INFO  valid result: 
+recall@3 : 0.0256    recall@5 : 0.0366    recall@10 : 0.0577    recall@20 : 0.0908    ndcg@3 : 0.0197    ndcg@5 : 0.0243    ndcg@10 : 0.031    ndcg@20 : 0.0393    
+Tue 16 May 2023 15:27:56 INFO  epoch 196 training [time: 1.11s, train loss: 203.2875]
+Tue 16 May 2023 15:27:57 INFO  epoch 197 training [time: 1.11s, train loss: 203.3658]
+Tue 16 May 2023 15:27:57 INFO  epoch 197 evaluating [time: 0.14s, valid_score: 0.090400]
+Tue 16 May 2023 15:27:57 INFO  valid result: 
+recall@3 : 0.0258    recall@5 : 0.037    recall@10 : 0.0598    recall@20 : 0.0904    ndcg@3 : 0.0201    ndcg@5 : 0.0246    ndcg@10 : 0.0319    ndcg@20 : 0.0396    
+Tue 16 May 2023 15:27:58 INFO  epoch 198 training [time: 1.11s, train loss: 203.6695]
+Tue 16 May 2023 15:27:59 INFO  epoch 199 training [time: 1.10s, train loss: 203.2240]
+Tue 16 May 2023 15:27:59 INFO  epoch 199 evaluating [time: 0.14s, valid_score: 0.092100]
+Tue 16 May 2023 15:27:59 INFO  valid result: 
+recall@3 : 0.0264    recall@5 : 0.0371    recall@10 : 0.0594    recall@20 : 0.0921    ndcg@3 : 0.0202    ndcg@5 : 0.0246    ndcg@10 : 0.0317    ndcg@20 : 0.04    
+Tue 16 May 2023 15:27:59 INFO  Saving current best: saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:59 INFO  Loading model structure and parameters from saved\GRU4Rec-May-16-2023_15-24-02.pth
+Tue 16 May 2023 15:27:59 INFO  best valid : {'recall@3': 0.0264, 'recall@5': 0.0371, 'recall@10': 0.0594, 'recall@20': 0.0921, 'ndcg@3': 0.0202, 'ndcg@5': 0.0246, 'ndcg@10': 0.0317, 'ndcg@20': 0.04}
+Tue 16 May 2023 15:27:59 INFO  test result: {'recall@3': 0.018, 'recall@5': 0.0252, 'recall@10': 0.043, 'recall@20': 0.0695, 'ndcg@3': 0.0134, 'ndcg@5': 0.0163, 'ndcg@10': 0.022, 'ndcg@20': 0.0287}
